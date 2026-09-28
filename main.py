@@ -13,8 +13,14 @@ from anri.brain import Brain
 console = Console()
 
 
+def show_tool_call(name: str, args: dict) -> None:
+    """Mostra a schermo quale strumento sta usando Anri (utile per capire cosa succede)."""
+    args_text = ", ".join(f"{k}={v!r}" for k, v in args.items())
+    console.print(f"\n[dim]  ⚙ {name}({args_text})[/]")
+
+
 def main() -> None:
-    brain = Brain()
+    brain = Brain(on_tool_call=show_tool_call)
     console.print(f"[bold cyan]Anri[/] online[dim](modello: {config.MODEL})[/]")
     console.print("[dim]Scrivi un messaggio, /reset per ricominciare, /esci per uscire.[/]\n")
 
