@@ -1,0 +1,17 @@
+{
+  // Usa sempre il Python dell'ambiente virtuale del progetto
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+
+  // Ruff formatta il codice e sistema gli import a ogni salvataggio
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // Linea guida verticale alla stessa lunghezza impostata per Ruff
+  "editor.rulers": [100]
+}
