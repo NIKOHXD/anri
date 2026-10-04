@@ -47,5 +47,15 @@ def imposta_timer(minuti: float, promemoria: str = "Il timer è scaduto!") -> st
         minuti: dopo quanti minuti far scattare il timer (può essere decimale, es. 0.5 = 30 secondi)
         promemoria: il messaggio da mostrare quando il timer scade
     """
-    # ✏️ Scrivi qui il tuo codice (e cancella la riga sotto)
+    if minuti <= 0:
+        return "la durata del timer deve essere maggiore di zero"
+    secondi = minuti * 60
+    t = threading.Timer(secondi, notifica, args=[promemoria])
+    t.daemon = True
+    t.start()
+    return (
+        f"Timer impostato: {minuti} minuti."
+        if minuti >= 1
+        else f"Timer impostato: {int(minuti * 60)} secondi."
+    )
     raise NotImplementedError
