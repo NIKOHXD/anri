@@ -6,7 +6,7 @@ azioni sul computer. Niente cloud, niente abbonamenti, i tuoi dati restano tuoi.
 ## Stato del progetto
 
 - [x] **Fase 1** — Chat testuale con un LLM locale (Qwen3 8B via Ollama)
-- [ ] **Fase 2** — Strumenti: apre app, ora/meteo, timer (tool calling)
+- [x] **Fase 2** — Strumenti: apre app, ora/meteo, timer (tool calling)
 - [ ] **Fase 3** — Voce: speech-to-text (Whisper) e text-to-speech (Piper)
 - [ ] **Fase 4** — Attivazione vocale con la parola "Anri"
 - [ ] **Fase 5** — Memoria a lungo termine
