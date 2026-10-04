@@ -1,3 +1,12 @@
 ollama>=0.6
 rich>=13
 httpx>=0.27
+
+# Voce (Fase 3)
+numpy>=2
+sounddevice>=0.5
+faster-whisper>=1.2
+piper-tts>=1.3
+# Librerie CUDA per far girare Whisper sulla GPU NVIDIA
+nvidia-cublas-cu12
+nvidia-cudnn-cu12>=9,<10

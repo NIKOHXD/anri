@@ -4,6 +4,9 @@ __pycache__/
 .env
 .ruff_cache/
 
+# Modelli vocali: pesanti, vengono scaricati in automatico al primo avvio
+voci/
+
 # Delle impostazioni di VS Code condividiamo solo quelle del progetto
 .vscode/*
 !.vscode/settings.json

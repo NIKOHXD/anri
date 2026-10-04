@@ -24,3 +24,18 @@ MAX_HISTORY = 20
 # Quante volte di fila Anri può usare strumenti per una singola richiesta,
 # prima di fermarsi (evita cicli infiniti se il modello si "incastra").
 MAX_TOOL_ROUNDS = 5
+
+# --- Voce (Fase 3) ---
+
+# Modello Whisper per capire cosa dici. "large-v3-turbo" è il migliore per
+# l'italiano e sulla RTX 5070 Ti trascrive una frase in circa 0.2 secondi.
+# Se un giorno usi un PC senza GPU NVIDIA, metti "small" e WHISPER_DEVICE = "cpu".
+WHISPER_MODEL = "large-v3-turbo"
+WHISPER_DEVICE = "cuda"
+
+# Voce italiana di Piper. Altre voci: https://rhasspy.github.io/piper-samples/
+PIPER_VOICE = "it_IT-paola-medium"
+VOICES_DIR = "voci"
+
+# Whisper lavora con audio a 16000 campioni al secondo
+SAMPLE_RATE = 16000
