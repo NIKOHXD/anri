@@ -23,7 +23,7 @@ Verifica:  .venv\\Scripts\\python.exe -m pytest tests/test_timer.py
 ══════════════════════════════════════════════════════════════════════════════
 """
 
-import threading  # noqa: F401  (ti servirà per l'esercizio)
+import threading
 import winsound
 
 from rich.console import Console

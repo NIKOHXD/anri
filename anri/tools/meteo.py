@@ -38,7 +38,7 @@ usare httpx.get come indicato sopra)
 ══════════════════════════════════════════════════════════════════════════════
 """
 
-import httpx  # noqa: F401  (ti servirà per l'esercizio)
+import httpx
 
 from anri.tools.registry import tool
 
@@ -78,5 +78,34 @@ def meteo(citta: str) -> str:
     Args:
         citta: nome della città, ad esempio "Milano" o "Parigi"
     """
-    # ✏️ Scrivi qui il tuo codice (e cancella la riga sotto)
-    raise NotImplementedError
+    risposta = httpx.get(
+        GEOCODING_URL, params={"name": citta, "count": 1, "language": "it"}, timeout=10
+    )
+    risposta.raise_for_status()
+    dati = risposta.json()
+    risultati = dati.get("results")
+
+    if not risultati:
+        return "Non ho trovato informazioni sul meteo per questa città."
+
+    luogo = risultati[0]
+    latitudine = luogo["latitude"]
+    longitudine = luogo["longitude"]
+
+    risposta_meteo = httpx.get(
+        METEO_URL,
+        params={
+            "latitude": latitudine,
+            "longitude": longitudine,
+            "current": "temperature_2m,weather_code,wind_speed_10m",
+        },
+        timeout=10,
+    )
+    risposta_meteo.raise_for_status()
+    attuale = risposta_meteo.json()
+
+    temperature = round(attuale["current"]["temperature_2m"])
+    cielo = DESCRIZIONI_METEO.get(attuale["current"]["weather_code"], "condizioni sconosciute")
+    vento = round(attuale["current"]["wind_speed_10m"])
+
+    return f"A {luogo['name']} ci sono {temperature}°C, {cielo}, vento a {vento} km/h."
