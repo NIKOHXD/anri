@@ -58,4 +58,3 @@ def imposta_timer(minuti: float, promemoria: str = "Il timer è scaduto!") -> st
         if minuti >= 1
         else f"Timer impostato: {int(minuti * 60)} secondi."
     )
-    raise NotImplementedError

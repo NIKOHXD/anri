@@ -84,5 +84,5 @@ def apri_app(nome: str) -> str:
     for nome_app, app_id in installata.items():
         if nome in nome_app:
             apri_app_installata(app_id)
-            return f"Ho aperto {nome}."
+            return f"Ho aperto {nome_app}."
     return f"Non ho trovato l'app {nome} sul computer."
