@@ -1,6 +1,13 @@
 {
-  // Usa sempre il Python dell'ambiente virtuale del progetto
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  // Usa il Python dell'ambiente virtuale del progetto. Non serve scrivere il
+  // percorso: l'estensione Python trova da sola la cartella .venv, sia su
+  // Windows (.venv\Scripts\python.exe) che su macOS (.venv/bin/python).
+  "python.terminal.activateEnvironment": true,
+
+  // Test con pytest dal pannello "Testing" (l'icona a forma di provetta)
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["tests"],
 
   // Ruff formatta il codice e sistema gli import a ogni salvataggio
   "[python]": {
@@ -13,5 +20,12 @@
   },
 
   // Linea guida verticale alla stessa lunghezza impostata per Ruff
-  "editor.rulers": [100]
+  "editor.rulers": [100],
+
+  // Nasconde dall'esploratore le cartelle generate automaticamente
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true
+  }
 }

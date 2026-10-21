@@ -1,0 +1,4 @@
+{
+  // Estensioni consigliate: VS Code propone di installarle all'apertura del progetto
+  "recommendations": ["ms-python.python", "ms-python.vscode-pylance", "charliermarsh.ruff"]
+}

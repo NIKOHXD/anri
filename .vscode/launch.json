@@ -1,0 +1,20 @@
+{
+  // Avvio con F5 (pannello "Run and Debug"): permette di usare i breakpoint
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Anri (testo)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Anri (voce)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main_voce.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

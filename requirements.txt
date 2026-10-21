@@ -7,6 +7,6 @@ numpy>=2
 sounddevice>=0.5
 faster-whisper>=1.2
 piper-tts>=1.3
-# Librerie CUDA per far girare Whisper sulla GPU NVIDIA
-nvidia-cublas-cu12
-nvidia-cudnn-cu12>=9,<10
+# Librerie CUDA per far girare Whisper sulla GPU NVIDIA (non esistono su macOS)
+nvidia-cublas-cu12; sys_platform != "darwin"
+nvidia-cudnn-cu12>=9,<10; sys_platform != "darwin"

@@ -7,6 +7,8 @@ __pycache__/
 # Modelli vocali: pesanti, vengono scaricati in automatico al primo avvio
 voci/
 
-# Delle impostazioni di VS Code condividiamo solo quelle del progetto
+# Di VS Code condividiamo solo impostazioni, estensioni consigliate e avvio
 .vscode/*
 !.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json

@@ -21,7 +21,7 @@ APP_INSTALLATE_FINTE = {
 def aperte(monkeypatch):
     """Sostituisce le funzioni che aprono le app e restituisce la lista delle app 'aperte'."""
     lista = []
-    monkeypatch.setattr(app.os, "startfile", lambda destinazione: lista.append(destinazione))
+    monkeypatch.setattr(app, "apri", lambda destinazione: lista.append(destinazione))
     monkeypatch.setattr(app, "apri_app_installata", lambda app_id: lista.append(app_id))
     monkeypatch.setattr(app, "trova_app_installate", lambda: APP_INSTALLATE_FINTE)
     return lista
@@ -29,13 +29,13 @@ def aperte(monkeypatch):
 
 def test_apre_scorciatoia(aperte):
     risposta = app.apri_app("calcolatrice")
-    assert aperte == ["calc.exe"]
+    assert aperte == [app.APP["calcolatrice"]]
     assert risposta == "Ho aperto calcolatrice."
 
 
 def test_ignora_maiuscole_e_spazi(aperte):
     app.apri_app("  Blocco Note ")
-    assert aperte == ["notepad.exe"]
+    assert aperte == [app.APP["blocco note"]]
 
 
 def test_apre_app_installata_nome_identico(aperte):

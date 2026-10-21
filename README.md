@@ -29,13 +29,16 @@ promemoria, meteo in tempo reale (Open-Meteo).
 
 ## Requisiti
 
-- Windows, Python 3.12
-- [Ollama](https://ollama.com) con il modello `qwen3:8b`
-- GPU NVIDIA consigliata (sviluppato su RTX 5070 Ti, 16 GB).
-  Senza GPU: in `anri/config.py` imposta `WHISPER_MODEL = "small"` e `WHISPER_DEVICE = "cpu"`
+- Windows o macOS, Python 3.12
+- [Ollama](https://ollama.com) con il modello `qwen3:8b` (Windows) o `qwen3:4b-instruct` (macOS)
+- Windows: GPU NVIDIA consigliata (sviluppato su RTX 5070 Ti, 16 GB)
+- macOS: Apple Silicon. Whisper gira sulla CPU con il modello `small`
+  (le impostazioni cambiano da sole in base al sistema, vedi `anri/config.py`)
 - Microfono e cuffie/casse per la modalità vocale
 
 ## Installazione
+
+Windows:
 
 ```bash
 ollama pull qwen3:8b
@@ -44,6 +47,19 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+macOS:
+
+```bash
+brew install ollama && brew services start ollama
+ollama pull qwen3:4b-instruct
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Sul Mac, al primo avvio della modalità vocale macOS chiede il permesso di usare
+il microfono per il Terminale (o per VS Code).
+
 ## Uso
 
 ```bash
@@ -51,7 +67,7 @@ python main_voce.py   # modalità vocale: premi Invio, parla, premi Invio
 python main.py        # modalità testuale
 ```
 
-Al primo avvio vengono scaricati in automatico il modello Whisper (~1.6 GB) e la
+Al primo avvio vengono scaricati in automatico il modello Whisper (~1.6 GB su Windows, ~500 MB su macOS) e la
 voce di Piper (~60 MB).
 
 ## Sviluppo

@@ -3,8 +3,17 @@
 Quando vorrai cambiare modello o personalità, modifica solo questo file.
 """
 
+import sys
+
+# Su Windows Anri gira sul PC con la GPU NVIDIA; su macOS (Mac M2, 8 GB di RAM)
+# usiamo modelli più leggeri che stanno nella memoria e girano senza CUDA.
+SU_MAC = sys.platform == "darwin"
+
 # Nome del modello scaricato con `ollama pull` (vedi `ollama list`).
-MODEL = "qwen3:8b"
+# qwen3:8b occupa ~5 GB: su un Mac da 8 GB, insieme a Whisper, non ci sta bene.
+# Serve la variante "instruct": "qwen3:4b" ragiona sempre (ignora think=False)
+# e scriverebbe tutto il ragionamento nella risposta.
+MODEL = "qwen3:4b-instruct" if SU_MAC else "qwen3:8b"
 
 # Il "system prompt" definisce il comportamento dell'assistente: viene mandato
 # all'LLM prima di ogni conversazione.
@@ -29,9 +38,9 @@ MAX_TOOL_ROUNDS = 5
 
 # Modello Whisper per capire cosa dici. "large-v3-turbo" è il migliore per
 # l'italiano e sulla RTX 5070 Ti trascrive una frase in circa 0.2 secondi.
-# Se un giorno usi un PC senza GPU NVIDIA, metti "small" e WHISPER_DEVICE = "cpu".
-WHISPER_MODEL = "large-v3-turbo"
-WHISPER_DEVICE = "cuda"
+# Sul Mac non c'è CUDA: Whisper gira sulla CPU con il modello "small", più veloce.
+WHISPER_MODEL = "small" if SU_MAC else "large-v3-turbo"
+WHISPER_DEVICE = "cpu" if SU_MAC else "cuda"
 
 # Voce italiana di Piper. Altre voci: https://rhasspy.github.io/piper-samples/
 PIPER_VOICE = "it_IT-paola-medium"

@@ -23,8 +23,9 @@ Verifica:  .venv\\Scripts\\python.exe -m pytest tests/test_timer.py
 ══════════════════════════════════════════════════════════════════════════════
 """
 
+import subprocess
+import sys
 import threading
-import winsound
 
 from rich.console import Console
 
@@ -36,7 +37,13 @@ console = Console()
 def notifica(promemoria: str) -> None:
     """Avvisa l'utente che un timer è scaduto (messaggio a schermo + suono)."""
     console.print(f"\n[bold yellow]⏰ {promemoria}[/]")
-    winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+    if sys.platform == "win32":
+        import winsound  # esiste solo su Windows
+
+        winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+    elif sys.platform == "darwin":
+        # afplay riproduce un suono di sistema di macOS; Popen non aspetta che finisca
+        subprocess.Popen(["afplay", "/System/Library/Sounds/Glass.aiff"])
 
 
 @tool
