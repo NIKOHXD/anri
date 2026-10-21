@@ -16,7 +16,7 @@ azioni sul computer. Niente cloud, niente abbonamenti, i tuoi dati restano tuoi.
 | Sintesi vocale | [Piper](https://github.com/OHF-Voice/piper1-gpl), voce italiana | CPU |
 
 **Strumenti disponibili:** apre qualsiasi app installata, ora e data, timer e
-promemoria, meteo in tempo reale (Open-Meteo).
+promemoria, meteo in tempo reale (Open-Meteo), memoria dei fatti sull'utente.
 
 ## Stato del progetto
 
@@ -24,7 +24,7 @@ promemoria, meteo in tempo reale (Open-Meteo).
 - [x] **Fase 2** — Strumenti: apre app, ora/meteo, timer (tool calling)
 - [x] **Fase 3** — Voce: speech-to-text (Whisper) e text-to-speech (Piper)
 - [ ] **Fase 4** — Attivazione vocale con la parola "Anri"
-- [ ] **Fase 5** — Memoria a lungo termine
+- [x] **Fase 5** — Memoria a lungo termine
 - [ ] **Fase 6** — Interfaccia grafica
 
 ## Requisiti

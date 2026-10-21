@@ -6,7 +6,7 @@ from typing import Any
 import ollama
 from ollama import Message
 
-from anri import config
+from anri import config, memoria
 from anri.tools import TOOLS, esegui
 
 # Funzione chiamata ogni volta che Anri usa uno strumento (es. per mostrarlo a schermo)
@@ -56,11 +56,14 @@ class Brain:
         Alla fine *restituisce* (con return, non yield) il testo completo e gli
         eventuali strumenti richiesti: li riceve chi usa `yield from`.
         """
+        # Il prompt viene ricomposto a ogni richiesta: così un fatto appena
+        # ricordato con lo strumento `ricorda` è già noto alla risposta successiva.
+        system_prompt = memoria.componi_prompt(memoria.carica())
         # think=False disattiva il "ragionamento" di Qwen3: risposte molto più
         # rapide, che per un assistente vocale contano più della profondità.
         stream = ollama.chat(
             model=self.model,
-            messages=[Message(role="system", content=config.SYSTEM_PROMPT), *self._recent()],
+            messages=[Message(role="system", content=system_prompt), *self._recent()],
             tools=list(TOOLS.values()),
             stream=True,
             think=False,

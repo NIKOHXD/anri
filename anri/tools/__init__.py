@@ -7,7 +7,7 @@ Per aggiungere un nuovo strumento:
 """
 
 # Importare i moduli fa eseguire i loro @tool, che riempiono il registro.
-from anri.tools import app, meteo, tempo, timer  # noqa: F401
+from anri.tools import app, meteo, ricordi, tempo, timer  # noqa: F401
 from anri.tools.registry import TOOLS, esegui
 
 __all__ = ["TOOLS", "esegui"]

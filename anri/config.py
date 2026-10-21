@@ -34,6 +34,11 @@ MAX_HISTORY = 20
 # prima di fermarsi (evita cicli infiniti se il modello si "incastra").
 MAX_TOOL_ROUNDS = 5
 
+# --- Memoria a lungo termine (Fase 5) ---
+
+# File dove Anri salva i fatti sull'utente (è personale: escluso da git)
+MEMORIA_FILE = "memoria.json"
+
 # --- Voce (Fase 3) ---
 
 # Modello Whisper per capire cosa dici. "large-v3-turbo" è il migliore per

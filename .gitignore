@@ -2,6 +2,9 @@
 __pycache__/
 *.pyc
 .env
+
+# Memoria di Anri: contiene fatti personali
+memoria.json
 .ruff_cache/
 
 # Modelli vocali: pesanti, vengono scaricati in automatico al primo avvio

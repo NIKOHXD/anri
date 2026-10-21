@@ -1,13 +1,13 @@
 """Punto di ingresso: chat testuale con Anri nel terminale.
 
 Avvio:  python main.py
-Comandi speciali:  /reset (nuova conversazione)   /esci (chiude)
+Comandi speciali:  /reset (nuova conversazione)   /memoria (cosa ricorda)   /esci (chiude)
 """
 
 import ollama
 from rich.console import Console
 
-from anri import config
+from anri import config, memoria
 from anri.brain import Brain
 
 console = Console()
@@ -22,7 +22,10 @@ def show_tool_call(name: str, args: dict) -> None:
 def main() -> None:
     brain = Brain(on_tool_call=show_tool_call)
     console.print(f"[bold cyan]Anri[/] online[dim](modello: {config.MODEL})[/]")
-    console.print("[dim]Scrivi un messaggio, /reset per ricominciare, /esci per uscire.[/]\n")
+    console.print(
+        "[dim]Scrivi un messaggio, /reset per ricominciare, "
+        "/memoria per vedere cosa ricorda, /esci per uscire.[/]\n"
+    )
 
     while True:
         try:
@@ -37,6 +40,14 @@ def main() -> None:
         if text == "/reset":
             brain.reset()
             console.print("[dim]Memoria della conversazione cancellata.[/]\n")
+            continue
+        if text == "/memoria":
+            fatti = memoria.carica()
+            if not fatti:
+                console.print("[dim]Non ricordo ancora niente di te.[/]\n")
+            for fatto in fatti:
+                console.print(f"[dim]  • {fatto}[/]")
+            console.print()
             continue
 
         console.print("[bold cyan]Anri > [/]", end="")
